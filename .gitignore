@@ -1,11 +1,12 @@
-# 1. Ignorar absolutamente todo por defecto
-*
-# 2. Permitir explorar subcarpetas (necesario para entrar a debug.w32)
-!**/
-# 3. Permitir el propio .gitignore
-!.gitignore
-# 4. Permitir archivos fuente .cpp en cualquier carpeta
-!*.cpp
-# 5. Permitir la carpeta capturas y todo su contenido
-!capturas/
-!capturas/**
+# Ignorar carpeta de compilación de ZinjaI
+debug.w32/
+release.w32/
+
+# Ignorar ejecutables de Windows y objetos
+*.exe
+*.o
+*.obj
+
+# Ignorar archivos temporales o de configuración local de ZinjaI/IDE
+*.layout
+*.depend
