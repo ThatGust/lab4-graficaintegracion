@@ -194,9 +194,8 @@ void Bresenham(int x1, int y1, int x2, int y2)
 }
 
 
-// ---------------------------------------------------------
 // MATRICES HOMOGENEAS 3x3 (de transformaciones.cpp)
-// ---------------------------------------------------------
+
 
 void identidad(float M[3][3])
 {
@@ -258,7 +257,7 @@ Punto transformarPunto(Punto P, float M[3][3])
 	P2.y = M[1][0] * P.x + M[1][1] * P.y + M[1][2];
 	return P2;
 }
-
+//Aplicamos la transformacion a todo el poligono con la matriz obtenida
 void transformar(Poligono &pol, float M[3][3])
 {
 	for (int i = 0; i < (int)pol.P.size(); i++)
