@@ -1,0 +1,178 @@
+Integracion final - Computacion Grafica
+Dibuje un poligono con clic izquierdo y cierrelo con clic derecho.
+Poligono 1 - P1 = (210, 430)
+Poligono 1 - P2 = (310, 350)
+Poligono 1 - P3 = (275, 230)
+Poligono 1 - P4 = (145, 230)
+Poligono 1 - P5 = (110, 350)
+
+Poligono 1 cerrado (5 vertices, 5 aristas).
+Poligono activo: 1
+Poligono 2 - P1 = (450, 430)
+Poligono 2 - P2 = (720, 430)
+Poligono 2 - P3 = (640, 320)
+Poligono 2 - P4 = (720, 200)
+Poligono 2 - P5 = (450, 200)
+Poligono 2 - P6 = (530, 315)
+
+Poligono 2 cerrado (6 vertices, 6 aristas).
+Poligono activo: 2
+Poligono 1 activo
+
+Rotacion de -5 grados respecto al centro (210, 318)
+M = T(C) * R * T(-C) =
+   |    0.9962    0.0872  -26.9164 |
+   |   -0.0872    0.9962   19.5128 |
+   |    0.0000    0.0000    1.0000 |
+
+Rotacion de -5 grados respecto al centro (210, 318)
+M = T(C) * R * T(-C) =
+   |    0.9962    0.0872  -26.9164 |
+   |   -0.0872    0.9962   19.5128 |
+   |    0.0000    0.0000    1.0000 |
+
+Rotacion de -5 grados respecto al centro (210, 318)
+M = T(C) * R * T(-C) =
+   |    0.9962    0.0872  -26.9164 |
+   |   -0.0872    0.9962   19.5128 |
+   |    0.0000    0.0000    1.0000 |
+
+Rotacion de -5 grados respecto al centro (210, 318)
+M = T(C) * R * T(-C) =
+   |    0.9962    0.0872  -26.9164 |
+   |   -0.0872    0.9962   19.5128 |
+   |    0.0000    0.0000    1.0000 |
+
+Rotacion de -5 grados respecto al centro (210, 318)
+M = T(C) * R * T(-C) =
+   |    0.9962    0.0872  -26.9164 |
+   |   -0.0872    0.9962   19.5128 |
+   |    0.0000    0.0000    1.0000 |
+
+Rotacion de -5 grados respecto al centro (210, 318)
+M = T(C) * R * T(-C) =
+   |    0.9962    0.0872  -26.9164 |
+   |   -0.0872    0.9962   19.5128 |
+   |    0.0000    0.0000    1.0000 |
+Color de relleno seleccionado: rojo
+Poligono 1 rellenado de rojo (Scan-Line con ET y EAT)
+Poligono 2 activo
+
+Escalamiento por 1.1 respecto al centro (585, 315.833)
+M = T(C) * S * T(-C) =
+   |    1.1000    0.0000  -58.5000 |
+   |    0.0000    1.1000  -31.5833 |
+   |    0.0000    0.0000    1.0000 |
+
+Escalamiento por 1.1 respecto al centro (585, 315.833)
+M = T(C) * S * T(-C) =
+   |    1.1000    0.0000  -58.5000 |
+   |    0.0000    1.1000  -31.5833 |
+   |    0.0000    0.0000    1.0000 |
+Color de relleno seleccionado: verde
+Poligono 2 rellenado de verde (Scan-Line con ET y EAT)
+Poligono 3 - P1 = (330, 70)
+Poligono 3 - P2 = (450, 70)
+Poligono 3 - P3 = (390, 150)
+
+Poligono 3 cerrado (3 vertices, 3 aristas).
+Poligono activo: 3
+
+Traslacion (0, 10)
+T =
+   |    1.0000    0.0000    0.0000 |
+   |    0.0000    1.0000   10.0000 |
+   |    0.0000    0.0000    1.0000 |
+
+Traslacion (0, 10)
+T =
+   |    1.0000    0.0000    0.0000 |
+   |    0.0000    1.0000   10.0000 |
+   |    0.0000    0.0000    1.0000 |
+
+Traslacion (0, 10)
+T =
+   |    1.0000    0.0000    0.0000 |
+   |    0.0000    1.0000   10.0000 |
+   |    0.0000    0.0000    1.0000 |
+
+Traslacion (0, 10)
+T =
+   |    1.0000    0.0000    0.0000 |
+   |    0.0000    1.0000   10.0000 |
+   |    0.0000    0.0000    1.0000 |
+
+Traslacion (0, 10)
+T =
+   |    1.0000    0.0000    0.0000 |
+   |    0.0000    1.0000   10.0000 |
+   |    0.0000    0.0000    1.0000 |
+
+Traslacion (-10, 0)
+T =
+   |    1.0000    0.0000  -10.0000 |
+   |    0.0000    1.0000    0.0000 |
+   |    0.0000    0.0000    1.0000 |
+
+Traslacion (-10, 0)
+T =
+   |    1.0000    0.0000  -10.0000 |
+   |    0.0000    1.0000    0.0000 |
+   |    0.0000    0.0000    1.0000 |
+
+Traslacion (-10, 0)
+T =
+   |    1.0000    0.0000  -10.0000 |
+   |    0.0000    1.0000    0.0000 |
+   |    0.0000    0.0000    1.0000 |
+Color de relleno seleccionado: azul
+Poligono 3 rellenado de azul (Scan-Line con ET y EAT)
+Poligono 1 activo
+
+Rotacion de 5 grados respecto al centro (210, 318)
+M = T(C) * R * T(-C) =
+   |    0.9962   -0.0872   28.5146 |
+   |    0.0872    0.9962  -17.0926 |
+   |    0.0000    0.0000    1.0000 |
+
+Rotacion de 5 grados respecto al centro (210, 318)
+M = T(C) * R * T(-C) =
+   |    0.9962   -0.0872   28.5146 |
+   |    0.0872    0.9962  -17.0926 |
+   |    0.0000    0.0000    1.0000 |
+
+Rotacion de 5 grados respecto al centro (210, 318)
+M = T(C) * R * T(-C) =
+   |    0.9962   -0.0872   28.5146 |
+   |    0.0872    0.9962  -17.0926 |
+   |    0.0000    0.0000    1.0000 |
+
+Traslacion (0, -10)
+T =
+   |    1.0000    0.0000    0.0000 |
+   |    0.0000    1.0000  -10.0000 |
+   |    0.0000    0.0000    1.0000 |
+
+Traslacion (0, -10)
+T =
+   |    1.0000    0.0000    0.0000 |
+   |    0.0000    1.0000  -10.0000 |
+   |    0.0000    0.0000    1.0000 |
+
+Traslacion (0, -10)
+T =
+   |    1.0000    0.0000    0.0000 |
+   |    0.0000    1.0000  -10.0000 |
+   |    0.0000    0.0000    1.0000 |
+
+Traslacion (0, -10)
+T =
+   |    1.0000    0.0000    0.0000 |
+   |    0.0000    1.0000  -10.0000 |
+   |    0.0000    0.0000    1.0000 |
+
+Escalamiento por 0.9 respecto al centro (210, 278)
+M = T(C) * S * T(-C) =
+   |    0.9000    0.0000   21.0000 |
+   |    0.0000    0.9000   27.8000 |
+   |    0.0000    0.0000    1.0000 |
