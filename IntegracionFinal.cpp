@@ -90,14 +90,6 @@ struct Poligono
 	}
 };
 
-// Arista de la tabla de aristas (ET) y de la tabla de aristas activas (EAT)
-struct Arista
-{
-	int ymin;
-	int ymax;
-	float x;      // interseccion actual con la linea de barrido
-	float invM;   // 1/m = dx/dy
-};
 
 
 // ---------------------------------------------------------
@@ -341,48 +333,7 @@ void trasladar(Poligono &pol, float tx, float ty)
 }
 
 
-// ---------------------------------------------------------
-// RELLENO SCAN-LINE CON ET Y EAT (de Relleno.cpp)
-// ---------------------------------------------------------
 
-// Construye la tabla de aristas. Como el poligono puede estar en
-// cualquier posicion (incluso fuera de la ventana despues de una
-// traslacion), la ET se indexa con y - yMin.
-vector< vector<Arista> > construirET(const vector<Punto> &V, int yMin, int yMax)
-{
-	vector< vector<Arista> > ET(yMax - yMin + 1);
-	int n = V.size();
-
-	for (int i = 0; i < n; i++)
-	{
-		int x1 = redondear(V[i].x);
-		int y1 = redondear(V[i].y);
-		int x2 = redondear(V[(i + 1) % n].x);
-		int y2 = redondear(V[(i + 1) % n].y);
-
-		// Las aristas horizontales no ingresan a la ET
-		if (y1 == y2)
-			continue;
-
-		Arista A;
-		if (y1 < y2)
-		{
-			A.ymin = y1;
-			A.ymax = y2;
-			A.x = (float)x1;
-		}
-		else
-		{
-			A.ymin = y2;
-			A.ymax = y1;
-			A.x = (float)x2;
-		}
-		A.invM = (float)(x2 - x1) / (float)(y2 - y1);
-
-		ET[A.ymin - yMin].push_back(A);
-	}
-	return ET;
-}
 
 bool compararX(const Arista &A, const Arista &B)
 {
@@ -392,73 +343,6 @@ bool compararX(const Arista &A, const Arista &B)
 bool aristaTerminada(const Arista &A, int y)
 {
 	return A.ymax == y;
-}
-
-void rellenarScanLine(const Poligono &pol)
-{
-	const vector<Punto> &V = pol.P;
-	if (V.size() < 3)
-		return;
-
-	// 1. Rango vertical del poligono
-	int yMin = redondear(V[0].y);
-	int yMax = yMin;
-	for (int i = 1; i < (int)V.size(); i++)
-	{
-		yMin = min(yMin, redondear(V[i].y));
-		yMax = max(yMax, redondear(V[i].y));
-	}
-
-	vector< vector<Arista> > ET = construirET(V, yMin, yMax);
-
-	// 2. La EAT empieza vacia
-	vector<Arista> EAT;
-
-	glColor3f(pol.color.r, pol.color.g, pol.color.b);
-	glBegin(GL_POINTS);
-
-	// 3. Recorrer las lineas de barrido
-	for (int y = yMin; y < yMax; y++)
-	{
-		// 3.1 Pasar de la ET a la EAT las aristas cuyo ymin = y
-		vector<Arista> &cesto = ET[y - yMin];
-		for (int i = 0; i < (int)cesto.size(); i++)
-			EAT.push_back(cesto[i]);
-
-		// 3.2 Retirar las aristas cuyo ymax = y
-		//     (el vertice ymax no se cuenta en la paridad)
-		vector<Arista> quedan;
-		for (int i = 0; i < (int)EAT.size(); i++)
-			if (!aristaTerminada(EAT[i], y))
-				quedan.push_back(EAT[i]);
-		EAT = quedan;
-
-		// Mantener la EAT ordenada en x
-		sort(EAT.begin(), EAT.end(), compararX);
-
-		// 3.3 Pintar los pixeles entre pares de intersecciones
-		//     (regla de paridad par-impar). Solo dentro de la ventana.
-		if (y >= 0 && y < ALTO)
-		{
-			for (int i = 0; i + 1 < (int)EAT.size(); i += 2)
-			{
-				int xIni = (int)ceil(EAT[i].x);
-				int xFin = (int)floor(EAT[i + 1].x);
-
-				if (xIni < 0) xIni = 0;
-				if (xFin > ANCHO - 1) xFin = ANCHO - 1;
-
-				for (int x = xIni; x <= xFin; x++)
-					pintarPixel(x, y);
-			}
-		}
-
-		// 3.4 / 3.5 Actualizar x para la siguiente linea: x = x + 1/m
-		for (int i = 0; i < (int)EAT.size(); i++)
-			EAT[i].x += EAT[i].invM;
-	}
-
-	glEnd();
 }
 
 
@@ -653,13 +537,6 @@ void movimiento(int x, int y)
 	glutPostRedisplay();
 }
 
-void seleccionarColor(float r, float g, float b)
-{
-	colorSeleccionado.r = r;
-	colorSeleccionado.g = g;
-	colorSeleccionado.b = b;
-	cout << "Color de relleno seleccionado: " << nombreColor(colorSeleccionado) << endl;
-}
 
 void teclado(unsigned char tecla, int x, int y)
 {
@@ -676,11 +553,7 @@ void teclado(unsigned char tecla, int x, int y)
 			cout << "El poligono " << i + 1 << " no existe o no esta cerrado." << endl;
 	}
 
-	// Color de relleno
-	if (tecla == 'r') seleccionarColor(1.0f, 0.0f, 0.0f);
-	if (tecla == 'g') seleccionarColor(0.0f, 1.0f, 0.0f);
-	if (tecla == 'b') seleccionarColor(0.0f, 0.0f, 1.0f);
-
+	
 	if (hayPoligonoActivo())
 	{
 		Poligono &pol = poligonos[poligonoActivo];

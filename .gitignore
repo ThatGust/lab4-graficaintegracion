@@ -1,0 +1,11 @@
+# 1. Ignorar absolutamente todo por defecto
+*
+# 2. Permitir explorar subcarpetas (necesario para entrar a debug.w32)
+!**/
+# 3. Permitir el propio .gitignore
+!.gitignore
+# 4. Permitir archivos fuente .cpp en cualquier carpeta
+!*.cpp
+# 5. Permitir la carpeta capturas y todo su contenido
+!capturas/
+!capturas/**
