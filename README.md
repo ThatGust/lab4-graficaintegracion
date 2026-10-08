@@ -181,3 +181,29 @@ Se vuelve a seleccionar el polígono 1 y se rota, traslada y reduce. Sigue rojo 
 | [`IntegracionFinal.zpr`](IntegracionFinal.zpr) | Proyecto de ZinjaI ya configurado para OpenGL |
 | [`capturas/`](capturas) | Capturas de las pruebas y salida de la consola |
 | [`.gitignore`](.gitignore) | Excluye los archivos generados al compilar |
+
+## Preguntas de Rasterización de polígonos y transformaciones geométricas.
+
+### 1. ¿Qué diferencia existe entre rasterizar la frontera de un polígono y rellenar su interior?
+
+Rasterizar la frontera consiste en identificar y dibujar los píxeles que forman los bordes o aristas del polígono. En cambio, rellenar su interior consiste en identificar los píxeles que se encuentran dentro de sus límites para pintarlos. La frontera representa el contorno de la figura, mientras que el relleno permite visualizar toda su superficie.
+
+### 2. ¿Por qué las aristas horizontales no se incorporan a la ET en el algoritmo trabajado?
+
+Las aristas horizontales no se incorporan a la Tabla de Aristas (ET) porque su variación en el eje Y es cero (\(\Delta y = 0\)). Como el algoritmo utiliza la pendiente inversa \(\Delta x / \Delta y\) para actualizar la posición de las intersecciones, incluirlas provocaría una división entre cero. Además, estas aristas no atraviesan diferentes líneas de barrido, por lo que no son necesarias para calcular el relleno interior.
+
+### 3. ¿Por qué una arista deja de estar activa al alcanzar su ymax?
+
+Una arista deja de estar activa cuando la línea de barrido alcanza su coordenada máxima en Y (\(ymax\)) porque, a partir de ese punto, ya no debe generar intersecciones con las siguientes líneas de barrido. Retirarla de la Tabla de Aristas Activas (EAT) evita contar intersecciones que ya no corresponden a esa arista y ayuda a prevenir errores en el relleno del polígono.
+
+### 4. ¿Qué representa Δx/Δy durante la actualización de la EAT?
+
+El valor \(\Delta x / \Delta y\) representa la pendiente inversa de una arista, es decir, cuánto cambia la coordenada X por cada unidad que avanza la coordenada Y. En cada nueva línea de barrido, este valor se suma a la coordenada X de la intersección anterior para calcular la nueva posición de la arista, sin necesidad de recalcular toda la ecuación de la recta.
+
+### 5. ¿Por qué ET y EAT deben calcularse a partir de las coordenadas actuales después de transformar un polígono?
+
+Porque las transformaciones geométricas, como la traslación, la rotación y el escalamiento, modifican las coordenadas y pueden cambiar las pendientes, las intersecciones y los límites verticales de las aristas. Por ello, la Tabla de Aristas (ET) y la Tabla de Aristas Activas (EAT) deben construirse utilizando las coordenadas actualizadas del polígono para que el relleno coincida con su nueva posición, orientación y tamaño.
+
+### 6. ¿Qué ventaja ofrecen las coordenadas homogéneas para integrar traslación, rotación y escalamiento?
+
+Las coordenadas homogéneas permiten representar la traslación, la rotación y el escalamiento mediante matrices de transformación. Su principal ventaja es que estas operaciones pueden combinarse multiplicando sus matrices y aplicarse al punto mediante una sola matriz compuesta. Esto simplifica el código, facilita la aplicación de varias transformaciones consecutivas y permite mantener un procedimiento uniforme para transformar los vértices del polígono.
