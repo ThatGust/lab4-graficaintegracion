@@ -253,40 +253,10 @@ Esta condición permite trabajar con un intervalo vertical que incluye el extrem
 
 ## 4. ¿Qué representa Δx/Δy durante la actualización de la EAT?
 
-El valor \(\Delta x/\Delta y\) representa la pendiente inversa de una arista, es decir, la variación horizontal de la arista por cada unidad de variación vertical. Este valor permite actualizar de manera incremental la coordenada X de la intersección sin tener que calcular nuevamente la ecuación completa de la recta en cada fila.
-
-Se calcula mediante la siguiente fórmula:
-
-$$
-\frac{\Delta x}{\Delta y}
-=
-\frac{x_{\max}-x_{\min}}{y_{\max}-y_{\min}}
-$$
-
-Donde:
-
-- \(x_{\max}\) y \(x_{\min}\): coordenadas horizontales de los extremos de la arista.
-- \(y_{\max}\) y \(y_{\min}\): coordenadas verticales de los extremos de la arista.
-
-Durante el recorrido de las líneas de barrido, la coordenada X se actualiza mediante la expresión:
-
-$$
-x_{\text{nuevo}}
-=
-x_{\text{actual}}+\frac{\Delta x}{\Delta y}
-$$
-
-Por ejemplo, si una arista tiene una variación horizontal de 6 unidades y una variación vertical de 3 unidades, su pendiente inversa será:
-
-$$
-\frac{\Delta x}{\Delta y}=\frac{6}{3}=2
-$$
-
-Esto significa que, por cada fila que avanza la línea de barrido, la coordenada X de la intersección aumenta en 2 unidades.
-
-Este procedimiento hace que el algoritmo sea más eficiente, ya que reutiliza la información calculada previamente en lugar de resolver nuevamente la ecuación de la recta en cada iteración.
-
-**En conclusión**, \(\Delta x/\Delta y\) indica cuánto debe desplazarse horizontalmente una intersección al pasar de una línea de barrido a la siguiente.
+El valor Δx/Δy representa la pendiente inversa de una arista, es decir, cuánto cambia la coordenada horizontal X por cada unidad que avanza la coordenada vertical Y.
+Durante el algoritmo de relleno mediante líneas de barrido, este valor permite actualizar la posición de la intersección de una arista con cada nueva fila de la imagen. En lugar de calcular nuevamente la ecuación completa de la recta en cada iteración, el algoritmo utiliza el valor previamente calculado para determinar cuánto debe desplazarse horizontalmente la intersección.
+Por ejemplo, si una arista se desplaza 6 unidades horizontalmente mientras sube 3 unidades verticalmente, su pendiente inversa indica que la coordenada X aumenta 2 unidades por cada fila que avanza la línea de barrido.
+En conclusión, este valor permite actualizar de manera eficiente las intersecciones almacenadas en la Tabla de Aristas Activas (EAT), reduciendo los cálculos necesarios y facilitando el relleno correcto del interior del polígono.
 
 ## 5. ¿Por qué ET y EAT deben calcularse a partir de las coordenadas actuales después de transformar un polígono?
 
